@@ -55,7 +55,7 @@ jobs:
         shell: bash
         run: |
           if [ -n "${{ secrets.VERCEL_ORG_ID }}" ]; then
-            npx vercel@25.1.0 deploy --prod --token="${{ secrets.VERCEL_TOKEN }}" --scope="${{ secrets.VERCEL_ORG_ID }}" --yes
+            npx vercel@25.1.0 deploy --prod --token="${{ secrets.VERCEL_TOKEN }}" --scope="${{ secrets.VERCEL_ORG_ID }}"
           else
-            npx vercel@25.1.0 deploy --prod --token="${{ secrets.VERCEL_TOKEN }}" --yes
+            npx vercel@25.1.0 deploy --prod --token="${{ secrets.VERCEL_TOKEN }}"
           fi
