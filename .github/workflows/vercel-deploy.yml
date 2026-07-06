@@ -40,14 +40,18 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Check Vercel secrets
+        id: check
+        shell: bash
         run: |
           if [ -z "${{ secrets.VERCEL_TOKEN }}" ] || [ -z "${{ secrets.VERCEL_ORG_ID }}" ] || [ -z "${{ secrets.VERCEL_PROJECT_ID }}" ]; then
             echo "Vercel deployment skipped because one or more required secrets are not configured."
-            exit 0
+            echo "deploy_enabled=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "deploy_enabled=true" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Deploy to Vercel
-        if: ${{ secrets.VERCEL_TOKEN != '' && secrets.VERCEL_ORG_ID != '' && secrets.VERCEL_PROJECT_ID != '' }}
+        if: ${{ steps.check.outputs.deploy_enabled == 'true' }}
         uses: amondnet/vercel-action@v25
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
