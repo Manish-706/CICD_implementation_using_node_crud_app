@@ -1,15 +1,5 @@
-const express = require('express');
 const connectDB = require('../src/config/db');
-const itemRoutes = require('../src/routes/itemRoutes');
-
-const app = express();
-app.use(express.json());
-
-app.get('/', (req, res) => {
-  res.json({ message: 'API is running' });
-});
-
-app.use('/items', itemRoutes);
+const app = require('../src/app');
 
 let isConnected = false;
 

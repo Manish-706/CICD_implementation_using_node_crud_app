@@ -1,6 +1,5 @@
 const express = require("express");
 const itemRoutes = require("./routes/itemRoutes");
-const connectDB = require("./config/db");
 
 const app = express();
 
@@ -12,4 +11,4 @@ app.get("/", (req, res) => {
 
 app.use("/api/items", itemRoutes);
 
-module.exports = {app, connectDB};
+module.exports = app;
