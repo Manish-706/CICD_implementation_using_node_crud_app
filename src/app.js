@@ -12,4 +12,4 @@ app.get("/", (req, res) => {
 
 app.use("/api/items", itemRoutes);
 
-module.exports = app;
+module.exports = {app, connectDB};
